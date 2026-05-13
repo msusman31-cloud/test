@@ -1,0 +1,2 @@
+echo "hellow"
+echo "hi"
