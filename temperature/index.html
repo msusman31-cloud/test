@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Adventure - Interactive Cartoon</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Scene -->
+        <div class="scene">
+            <!-- Sky -->
+            <div class="sky"></div>
+            
+            <!-- Sun -->
+            <svg class="sun-svg" viewBox="0 0 100 100">
+                <circle class="sun" cx="50" cy="50" r="40"/>
+                <g class="sun-rays">
+                    <line x1="50" y1="5" x2="50" y2="15" stroke-width="3"/>
+                    <line x1="85" y1="15" x2="78" y2="22" stroke-width="3"/>
+                    <line x1="95" y1="50" x2="85" y2="50" stroke-width="3"/>
+                    <line x1="85" y1="85" x2="78" y2="78" stroke-width="3"/>
+                    <line x1="50" y1="95" x2="50" y2="85" stroke-width="3"/>
+                    <line x1="15" y1="85" x2="22" y2="78" stroke-width="3"/>
+                    <line x1="5" y1="50" x2="15" y2="50" stroke-width="3"/>
+                    <line x1="15" y1="15" x2="22" y2="22" stroke-width="3"/>
+                </g>
+            </svg>
+            
+            <!-- Clouds Container -->
+            <div class="clouds-container">
+                <div class="cloud cloud-1">
+                    <div class="cloud-part"></div>
+                    <div class="cloud-part"></div>
+                    <div class="cloud-part"></div>
+                </div>
+                <div class="cloud cloud-2">
+                    <div class="cloud-part"></div>
+                    <div class="cloud-part"></div>
+                    <div class="cloud-part"></div>
+                </div>
+            </div>
+            
+            <!-- Birds -->
+            <div class="birds-container" id="birds-container">
+                <div class="bird bird-1">🐦</div>
+                <div class="bird bird-2">🐦</div>
+                <div class="bird bird-3">🐦</div>
+            </div>
+            
+            <!-- Snowflakes -->
+            <div class="snowflakes-container" id="snowflakes">
+                <div class="snowflake">❄️</div>
+                <div class="snowflake">❄️</div>
+                <div class="snowflake">❄️</div>
+                <div class="snowflake">❄️</div>
+                <div class="snowflake">❄️</div>
+                <div class="snowflake">❄️</div>
+                <div class="snowflake">❄️</div>
+                <div class="snowflake">❄️</div>
+            </div>
+            
+            <!-- Mountains -->
+            <svg class="mountains" viewBox="0 0 1000 300" preserveAspectRatio="none">
+                <!-- Mountain 1 -->
+                <polygon class="mountain mountain-1" points="0,300 150,100 300,300"/>
+                <!-- Mountain 2 -->
+                <polygon class="mountain mountain-2" points="250,300 450,50 650,300"/>
+                <!-- Mountain 3 -->
+                <polygon class="mountain mountain-3" points="600,300 800,120 1000,300"/>
+                <!-- Snow caps -->
+                <polygon class="snowcap snowcap-1" points="150,100 130,150 170,150"/>
+                <polygon class="snowcap snowcap-2" points="450,50 400,130 500,130"/>
+                <polygon class="snowcap snowcap-3" points="800,120 770,180 830,180"/>
+            </svg>
+            
+            <!-- Landscape/Ground -->
+            <div class="landscape"></div>
+            
+            <!-- Temperature Display -->
+            <div class="temperature-display" id="temperature-display">
+                <span id="temp-label">Temperature</span>
+                <span id="temp-value">20°C</span>
+            </div>
+        </div>
+        
+        <!-- Slider Control -->
+        <div class="slider-container">
+            <div class="slider-label cold">❄️ COLD</div>
+            <input type="range" id="temperature-slider" class="slider" min="0" max="100" value="50" aria-label="Temperature slider">
+            <div class="slider-label hot">🔥 HOT</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

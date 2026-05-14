@@ -1,0 +1,465 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: 'Arial', 'Segoe UI', sans-serif;
+    overflow: hidden;
+    background: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+/* Scene Container */
+.scene {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sky Background */
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+    transition: background 0.8s ease;
+    z-index: 1;
+}
+
+/* Sun */
+.sun-svg {
+    position: absolute;
+    top: 8%;
+    right: 10%;
+    width: 120px;
+    height: 120px;
+    z-index: 5;
+    transition: filter 0.8s ease;
+}
+
+.sun {
+    fill: #FFD700;
+    transition: fill 0.8s ease;
+    filter: drop-shadow(0 0 30px #FFD700);
+}
+
+.sun-rays line {
+    stroke: #FFD700;
+    transition: stroke 0.8s ease, filter 0.8s ease;
+    filter: drop-shadow(0 0 10px #FFD700);
+    stroke-linecap: round;
+}
+
+/* Clouds */
+.clouds-container {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    height: 20%;
+    z-index: 3;
+    transition: opacity 0.8s ease;
+}
+
+.cloud {
+    position: absolute;
+    display: flex;
+    gap: -10px;
+}
+
+.cloud-part {
+    width: 60px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    margin: -10px;
+}
+
+.cloud-1 {
+    left: 5%;
+    top: 10%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.cloud-2 {
+    right: 5%;
+    top: 40%;
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(40px);
+    }
+}
+
+/* Birds */
+.birds-container {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    height: 15%;
+    z-index: 4;
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+.bird {
+    position: absolute;
+    font-size: 2em;
+    animation: fly 8s linear infinite;
+}
+
+.bird-1 {
+    left: 10%;
+    top: 20%;
+    animation-delay: 0s;
+}
+
+.bird-2 {
+    left: 30%;
+    top: 40%;
+    animation-delay: 2s;
+}
+
+.bird-3 {
+    left: 60%;
+    top: 10%;
+    animation-delay: 4s;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateX(-100px) translateY(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(30px);
+        opacity: 0;
+    }
+}
+
+/* Snowflakes */
+.snowflakes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+}
+
+.snowflake {
+    position: absolute;
+    font-size: 2.5em;
+    animation: snowfall 8s linear infinite;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.snowflake:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.snowflake:nth-child(2) {
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.snowflake:nth-child(3) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.snowflake:nth-child(4) {
+    left: 40%;
+    animation-delay: 3s;
+}
+
+.snowflake:nth-child(5) {
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.snowflake:nth-child(6) {
+    left: 60%;
+    animation-delay: 5s;
+}
+
+.snowflake:nth-child(7) {
+    left: 70%;
+    animation-delay: 6s;
+}
+
+.snowflake:nth-child(8) {
+    left: 80%;
+    animation-delay: 7s;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-50px) rotateZ(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotateZ(360deg);
+        opacity: 0.3;
+    }
+}
+
+/* Mountains */
+.mountains {
+    position: absolute;
+    bottom: 20%;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    z-index: 4;
+}
+
+.mountain {
+    transition: fill 0.8s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.mountain-1 {
+    fill: #228B22;
+}
+
+.mountain-2 {
+    fill: #32CD32;
+}
+
+.mountain-3 {
+    fill: #006400;
+}
+
+.snowcap {
+    fill: #FFFFFF;
+    transition: opacity 0.8s ease;
+    opacity: 0;
+}
+
+/* Landscape/Ground */
+.landscape {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(to bottom, #9ACD32, #7CB342);
+    transition: background 0.8s ease;
+    z-index: 3;
+}
+
+/* Temperature Display */
+.temperature-display {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 15px 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#temp-label {
+    font-size: 0.9em;
+    color: #333;
+}
+
+#temp-value {
+    font-size: 2em;
+    color: #FF6B6B;
+}
+
+/* Slider Container */
+.slider-container {
+    height: 120px;
+    background: linear-gradient(to right, #E3F2FD, #FFF3E0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.slider-label {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    min-width: 80px;
+    text-align: center;
+}
+
+.slider-label.cold {
+    color: #1976D2;
+}
+
+.slider-label.hot {
+    color: #D32F2F;
+}
+
+/* Slider Styling */
+.slider {
+    width: 60%;
+    max-width: 500px;
+    height: 25px;
+    border-radius: 15px;
+    background: linear-gradient(to right, #64B5F6, #FFB74D);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 3px solid white;
+    transition: transform 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.slider::-webkit-slider-thumb:active {
+    transform: scale(0.95);
+}
+
+/* Firefox */
+.slider::-moz-range-thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 3px solid white;
+    transition: transform 0.2s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+}
+
+.slider::-moz-range-thumb:active {
+    transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slider-container {
+        height: 100px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .slider {
+        width: 85%;
+    }
+
+    .slider-label {
+        font-size: 1em;
+        min-width: 60px;
+    }
+
+    .temperature-display {
+        top: 10px;
+        left: 10px;
+        padding: 10px 15px;
+    }
+
+    #temp-value {
+        font-size: 1.5em;
+    }
+
+    .sun-svg {
+        width: 80px;
+        height: 80px;
+        top: 5%;
+        right: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-container {
+        height: 90px;
+    }
+
+    .slider {
+        width: 90%;
+    }
+
+    .slider-label {
+        font-size: 0.85em;
+    }
+
+    .temperature-display {
+        font-size: 0.85em;
+        padding: 8px 12px;
+    }
+
+    #temp-value {
+        font-size: 1.2em;
+    }
+
+    .sun-svg {
+        width: 70px;
+        height: 70px;
+    }
+
+    .cloud-part {
+        width: 40px;
+        height: 35px;
+    }
+
+    .bird {
+        font-size: 1.5em;
+    }
+
+    .snowflake {
+        font-size: 1.8em;
+    }
+}
