@@ -2,6 +2,7 @@
 :root {
     --sky-color: linear-gradient(to bottom, #87CEEB, #E0F6FF);
     --sun-color: #FFD700;
+    --sun-shadow: 0 0 20px #FFD700;
     --mountain-color1: #228B22;
     --mountain-color2: #32CD32;
     --mountain-color3: #006400;
@@ -14,13 +15,13 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
     height: 100vh;
     display: flex;
     flex-direction: column;
     background: var(--sky-color);
-    transition: background 0.5s ease;
+    transition: background 1s ease;
 }
 
 .scene {
@@ -36,7 +37,7 @@ body {
     width: 100%;
     height: 100%;
     background: var(--sky-color);
-    transition: background 0.5s ease;
+    transition: background 1s ease;
 }
 
 .sun {
@@ -47,8 +48,8 @@ body {
     height: 100px;
     background: var(--sun-color);
     border-radius: 50%;
-    box-shadow: 0 0 20px var(--sun-color);
-    transition: background 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: var(--sun-shadow);
+    transition: background 1s ease, box-shadow 1s ease, top 2s ease;
 }
 
 .mountain {
@@ -56,7 +57,7 @@ body {
     bottom: 20%;
     background: linear-gradient(to top, var(--mountain-color1), var(--mountain-color2));
     clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-    transition: background 0.5s ease;
+    transition: background 1s ease;
 }
 
 .mountain1 {
@@ -84,9 +85,72 @@ body {
     width: 100%;
     height: 20%;
     background: var(--landscape-color);
-    transition: background 0.5s ease;
+    transition: background 1s ease;
 }
 
+/* Weather Info Overlay */
+.weather-info {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.weather-info h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+.weather-info p {
+    font-size: 1.5em;
+    margin: 5px 0;
+}
+
+#temp-value {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+/* Search Container */
+.search-container {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+#city-input {
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    width: 250px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-size: 1rem;
+    outline: none;
+}
+
+#search-btn {
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+#search-btn:hover {
+    background: #555;
+}
+
+/* Animations */
 .clouds {
     position: absolute;
     top: 20%;
@@ -98,70 +162,15 @@ body {
     position: absolute;
     background: var(--cloud-color);
     border-radius: 50%;
-    animation: float 10s ease-in-out infinite;
+    animation: float 15s ease-in-out infinite;
 }
 
-.cloud1 {
-    left: 10%;
-    width: 80px;
-    height: 40px;
-    animation-delay: 0s;
-}
-
-.cloud1::before {
-    content: '';
-    position: absolute;
-    left: -20px;
-    top: 10px;
-    width: 40px;
-    height: 20px;
-    background: var(--cloud-color);
-    border-radius: 50%;
-}
-
-.cloud1::after {
-    content: '';
-    position: absolute;
-    right: -20px;
-    top: 10px;
-    width: 40px;
-    height: 20px;
-    background: var(--cloud-color);
-    border-radius: 50%;
-}
-
-.cloud2 {
-    right: 10%;
-    width: 100px;
-    height: 50px;
-    animation-delay: 5s;
-}
-
-.cloud2::before {
-    content: '';
-    position: absolute;
-    left: -25px;
-    top: 15px;
-    width: 50px;
-    height: 25px;
-    background: var(--cloud-color);
-    border-radius: 50%;
-}
-
-.cloud2::after {
-    content: '';
-    position: absolute;
-    right: -25px;
-    top: 15px;
-    width: 50px;
-    height: 25px;
-    background: var(--cloud-color);
-    border-radius: 50%;
-}
+.cloud1 { left: 10%; width: 100px; height: 50px; }
+.cloud2 { right: 15%; width: 120px; height: 60px; animation-delay: 2s; }
 
 @keyframes float {
     0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(20px); }
+    50% { transform: translateX(30px); }
 }
 
 .snow {
@@ -171,32 +180,22 @@ body {
     width: 100%;
     height: 100%;
     opacity: var(--snow-opacity);
-    transition: opacity 0.5s ease;
+    transition: opacity 1s ease;
     pointer-events: none;
 }
 
-.snow::before {
-    content: '❄️❄️❄️';
+.snow::before, .snow::after {
+    content: '❄️';
     position: absolute;
-    top: 10%;
-    left: 20%;
     font-size: 2em;
-    animation: fall 5s linear infinite;
-}
-
-.snow::after {
-    content: '❄️❄️❄️';
-    position: absolute;
-    top: 20%;
-    right: 20%;
-    font-size: 2em;
-    animation: fall 7s linear infinite;
-    animation-delay: 2s;
+    animation: fall 10s linear infinite;
 }
 
 @keyframes fall {
-    0% { transform: translateY(-100vh); }
-    100% { transform: translateY(100vh); }
+    0% { transform: translateY(-100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
 }
 
 .birds {
@@ -205,70 +204,24 @@ body {
     width: 100%;
     height: 20%;
     opacity: var(--birds-opacity);
-    transition: opacity 0.5s ease;
+    transition: opacity 1s ease;
 }
 
 .bird {
     position: absolute;
     font-size: 2em;
-    animation: fly 8s ease-in-out infinite;
-}
-
-.bird1 {
-    left: 5%;
-    animation-delay: 0s;
-}
-
-.bird2 {
-    right: 5%;
-    animation-delay: 4s;
+    animation: fly 10s ease-in-out infinite;
 }
 
 @keyframes fly {
-    0%, 100% { transform: translateX(0) translateY(0); }
-    25% { transform: translateX(50px) translateY(-20px); }
-    50% { transform: translateX(100px) translateY(0); }
-    75% { transform: translateX(150px) translateY(-20px); }
-}
-
-.controls {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 10px 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#temp-slider {
-    width: 200px;
-    cursor: pointer;
-}
-
-#temp-value {
-    font-weight: bold;
-    color: #333;
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(200px, -50px); }
+    100% { transform: translate(400px, 0); }
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .sun {
-        width: 80px;
-        height: 80px;
-    }
-    .mountain1 { height: 200px; }
-    .mountain2 { height: 250px; }
-    .mountain3 { height: 180px; }
-    .controls {
-        flex-direction: column;
-        gap: 5px;
-    }
-    #temp-slider {
-        width: 150px;
-    }
+@media (max-width: 600px) {
+    .weather-info h1 { font-size: 2em; }
+    #temp-value { font-size: 3em; }
+    #city-input { width: 150px; }
 }

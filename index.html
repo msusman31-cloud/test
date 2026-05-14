@@ -24,10 +24,15 @@
             <div class="bird bird2">🐦</div>
         </div>
     </div>
-    <div class="controls">
-        <label for="temp-slider">Temperature:</label>
-        <input type="range" id="temp-slider" min="0" max="100" value="50">
-        <span id="temp-value">50°C</span>
+    <div class="weather-info" id="weather-info">
+        <h1 id="city-name">Loading...</h1>
+        <p id="weather-desc">Searching for clear skies</p>
+        <span id="temp-value">--°C</span>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="city-input" placeholder="Enter city name..." aria-label="City Name">
+        <button id="search-btn">Search</button>
     </div>
     <script src="script.js"></script>
 </body>
