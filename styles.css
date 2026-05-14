@@ -1,0 +1,274 @@
+/* CSS Variables for dynamic colors */
+:root {
+    --sky-color: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+    --sun-color: #FFD700;
+    --mountain-color1: #228B22;
+    --mountain-color2: #32CD32;
+    --mountain-color3: #006400;
+    --landscape-color: #9ACD32;
+    --cloud-color: rgba(255, 255, 255, 0.8);
+    --snow-opacity: 0;
+    --birds-opacity: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--sky-color);
+    transition: background 0.5s ease;
+}
+
+.scene {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--sky-color);
+    transition: background 0.5s ease;
+}
+
+.sun {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    background: var(--sun-color);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--sun-color);
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.mountain {
+    position: absolute;
+    bottom: 20%;
+    background: linear-gradient(to top, var(--mountain-color1), var(--mountain-color2));
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    transition: background 0.5s ease;
+}
+
+.mountain1 {
+    left: 0;
+    width: 40%;
+    height: 300px;
+}
+
+.mountain2 {
+    left: 30%;
+    width: 50%;
+    height: 350px;
+}
+
+.mountain3 {
+    left: 60%;
+    width: 40%;
+    height: 250px;
+}
+
+.landscape {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: var(--landscape-color);
+    transition: background 0.5s ease;
+}
+
+.clouds {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    height: 20%;
+}
+
+.cloud {
+    position: absolute;
+    background: var(--cloud-color);
+    border-radius: 50%;
+    animation: float 10s ease-in-out infinite;
+}
+
+.cloud1 {
+    left: 10%;
+    width: 80px;
+    height: 40px;
+    animation-delay: 0s;
+}
+
+.cloud1::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 10px;
+    width: 40px;
+    height: 20px;
+    background: var(--cloud-color);
+    border-radius: 50%;
+}
+
+.cloud1::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: 10px;
+    width: 40px;
+    height: 20px;
+    background: var(--cloud-color);
+    border-radius: 50%;
+}
+
+.cloud2 {
+    right: 10%;
+    width: 100px;
+    height: 50px;
+    animation-delay: 5s;
+}
+
+.cloud2::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 15px;
+    width: 50px;
+    height: 25px;
+    background: var(--cloud-color);
+    border-radius: 50%;
+}
+
+.cloud2::after {
+    content: '';
+    position: absolute;
+    right: -25px;
+    top: 15px;
+    width: 50px;
+    height: 25px;
+    background: var(--cloud-color);
+    border-radius: 50%;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+}
+
+.snow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: var(--snow-opacity);
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.snow::before {
+    content: '❄️❄️❄️';
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    font-size: 2em;
+    animation: fall 5s linear infinite;
+}
+
+.snow::after {
+    content: '❄️❄️❄️';
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    font-size: 2em;
+    animation: fall 7s linear infinite;
+    animation-delay: 2s;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100vh); }
+    100% { transform: translateY(100vh); }
+}
+
+.birds {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    height: 20%;
+    opacity: var(--birds-opacity);
+    transition: opacity 0.5s ease;
+}
+
+.bird {
+    position: absolute;
+    font-size: 2em;
+    animation: fly 8s ease-in-out infinite;
+}
+
+.bird1 {
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.bird2 {
+    right: 5%;
+    animation-delay: 4s;
+}
+
+@keyframes fly {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(50px) translateY(-20px); }
+    50% { transform: translateX(100px) translateY(0); }
+    75% { transform: translateX(150px) translateY(-20px); }
+}
+
+.controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#temp-slider {
+    width: 200px;
+    cursor: pointer;
+}
+
+#temp-value {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sun {
+        width: 80px;
+        height: 80px;
+    }
+    .mountain1 { height: 200px; }
+    .mountain2 { height: 250px; }
+    .mountain3 { height: 180px; }
+    .controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    #temp-slider {
+        width: 150px;
+    }
+}
